@@ -3,10 +3,10 @@ name: Build and Push Docker Image
 on:
   push:
     branches:
-      - master  # Or whichever branch you want to trigger the CI/CD on
+      - main  # Or whichever branch you want to trigger the CI/CD on
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   build:
