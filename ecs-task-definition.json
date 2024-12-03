@@ -1,0 +1,28 @@
+{
+  "family": "flask-app-task",  // Name of the task definition family
+  "networkMode": "awsvpc",  // Required for Fargate tasks
+  "containerDefinitions": [
+    {
+      "name": "flask-app-container",  // Name of your container
+      "image": "docker.io/kanim123/flask-app:latest",  // Docker Hub image URL
+      "memory": 512,  // Memory allocated to the container (in MB)
+      "cpu": 256,  // CPU allocated to the container (in CPU units)
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 5000,  // Port your Flask app is running on
+          "hostPort": 5000,  // Port on the host
+          "protocol": "tcp"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/flask-app",  // Log group in CloudWatch Logs
+          "awslogs-region": "us-west-2",  // AWS region (adjust accordingly)
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}
